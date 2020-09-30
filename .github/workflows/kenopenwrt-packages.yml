@@ -1,0 +1,31 @@
+name: kenzok8/openwrt-packages
+
+on: 
+  push:
+    branches: 
+      - master
+    paths:
+      - '.github/workflows/kenopenwrt-packages.yml'
+  schedule:
+    - cron: '25 10 1-31/2 * *'
+
+jobs:
+  sync:
+    name: Sync
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone
+        run: git clone --mirror --no-single-branch --depth=$DEPTH $SRC_REPO repo.git
+        env:
+          SRC_REPO: https://github.com/kenzok8/openwrt-packages
+          DEPTH: 1
+      - name: Config DownStream
+        run: git -C repo.git remote add downstream "$PUSH_TARGET"
+        env:
+          PUSH_TARGET: https://${{ secrets.GH_USER }}:${{ secrets.GH_TOKEN }}@github.com/${{ secrets.GH_USER }}/kenopenwrt-packages
+      - name: Push Downstream Or Try Unshallow On Failed
+        run: |
+          git -C repo.git fetch --unshallow origin || exit 1 
+          git -C repo.git gc
+          git -C repo.git count-objects -vH
+          git -C repo.git push --all --force downstream && git -C repo.git push --tags downstream
