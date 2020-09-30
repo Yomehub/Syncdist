@@ -4,8 +4,10 @@ on:
   push:
     branches: 
       - master
+    paths:
+      - '.github/workflows/openwrt-lede.yml'
   schedule:
-    - cron: '09 10 * * *'
+     - cron: '09 10 * * *'
 
 jobs:
   sync:
