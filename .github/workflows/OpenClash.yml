@@ -1,0 +1,24 @@
+name: vernesong/OpenClash
+
+on: 
+  push:
+    branches: 
+      - master
+    paths:
+      - '.github/workflows/openclash.yml'
+      - 'README.md'
+  schedule:
+    - cron: '48 10 1-31/2 * *'
+
+jobs:
+  repo-sync:
+    runs-on: ubuntu-latest
+    steps:
+    - name: repo-sync
+      uses: wei/git-sync@v2
+      with:
+        source_repo: "https://github.com/vernesong/OpenClash.git"
+        source_branch: "master"
+        destination_repo: "https://${{ secrets.GH_USER }}:${{ secrets.GH_TOKEN }}@github.com/${{ secrets.GH_USER }}/OpenClash.git"
+        destination_branch: "main"
+        ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}  #ssh_private_key does not be used here
