@@ -1,4 +1,4 @@
-name: xiaorouji/openwrt-helloworld
+name: fw876/openwrt-helloworld
 
 on: 
   push:
