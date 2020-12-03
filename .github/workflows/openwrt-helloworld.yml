@@ -1,0 +1,24 @@
+name: xiaorouji/openwrt-helloworld
+
+on: 
+  push:
+    branches: 
+      - master
+    paths:
+      - '.github/workflows/openwrt-helloworld.yml'
+      - 'README.md'
+  schedule:
+    - cron: '38 10 1-31/2 * *'
+
+jobs:
+  repo-sync:
+    runs-on: ubuntu-latest
+    steps:
+    - name: repo-sync
+      uses: wei/git-sync@v2
+      with:
+        source_repo: "https://github.com/fw876/helloworld.git"
+        source_branch: "master"
+        destination_repo: "https://Yomehub:${{ secrets.GH_TOKEN }}@github.com/Yomehub/helloworld.git"
+        destination_branch: "main"
+        ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}  #ssh_private_key does not be used here
