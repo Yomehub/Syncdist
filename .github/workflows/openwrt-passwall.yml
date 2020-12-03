@@ -1,0 +1,24 @@
+name: xiaorouji/openwrt-passwall
+
+on: 
+  push:
+    branches: 
+      - master
+    paths:
+      - '.github/workflows/openwrt-passwall.yml'
+      - 'README.md'
+  schedule:
+    - cron: '25 10 1-31/2 * *'
+
+jobs:
+  repo-sync:
+    runs-on: ubuntu-latest
+    steps:
+    - name: repo-sync
+      uses: wei/git-sync@v2
+      with:
+        source_repo: "https://github.com/xiaorouji/openwrt-passwall.git"
+        source_branch: "main"
+        destination_repo: "https://Yomehub:${{ secrets.GH_TOKEN }}@github.com/Yomehub/passwall.git"
+        destination_branch: "main"
+        ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}  #ssh_private_key does not be used here
