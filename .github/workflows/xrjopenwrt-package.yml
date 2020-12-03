@@ -6,8 +6,8 @@ on:
       - master
     paths:
       - '.github/workflows/xrjopenwrt-package.yml'
-  schedule:
-    - cron: '15 10 1-31/2 * *'
+#  schedule:
+#    - cron: '15 10 1-31/2 * *'
 
 jobs:
   sync:
