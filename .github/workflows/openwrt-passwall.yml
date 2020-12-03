@@ -19,6 +19,6 @@ jobs:
       with:
         source_repo: "https://github.com/xiaorouji/openwrt-passwall.git"
         source_branch: "main"
-        destination_repo: "https://Yomehub:${{ secrets.GH_TOKEN }}@github.com/Yomehub/passwall.git"
+        destination_repo: "https://${{ secrets.GH_USER }}:${{ secrets.GH_TOKEN }}@github.com/${{ secrets.GH_USER }}/passwall.git"
         destination_branch: "main"
         ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}  #ssh_private_key does not be used here
