@@ -5,7 +5,7 @@ on:
     branches: 
       - master
     paths:
-      - '.github/workflows/openclash.yml'
+      - '.github/workflows/OpenClash.yml'
       - 'README.md'
   schedule:
     - cron: '48 10 1-31/2 * *'
