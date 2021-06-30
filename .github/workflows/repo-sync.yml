@@ -1,0 +1,23 @@
+name: Repo Sync
+
+on: 
+  push:
+    branches: 
+      - master
+    paths:
+      - '.github/workflows/repo-sync.yml'
+  schedule:
+    - cron: '30 6 6 * *'
+
+jobs:
+  repo-sync:
+    runs-on: ubuntu-latest
+    steps:
+    - name: repo-sync
+      uses: wei/git-sync@v3
+      with:
+        source_repo: "https://github.com/repo-sync/github-sync.git"
+        source_branch: "master"
+        destination_repo: "https://${{ secrets.GH_USER }}:${{ secrets.GH_TOKEN }}@github.com/${{ secrets.GH_USER }}/git-sync.git"
+        destination_branch: "dev"
+        ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}  #ssh_private_key does not be used here
