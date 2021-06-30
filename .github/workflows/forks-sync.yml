@@ -1,0 +1,24 @@
+name: sync/action
+
+on: 
+  push:
+    branches: 
+      - master
+    paths:
+      - '.github/workflows/forks-sync.yml'
+  schedule:
+    - cron: '10 6 7 5 *'
+
+jobs:
+  update_external_airflow_fork:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: TobKed/github-forks-sync-action@master
+        with:
+          github_token: ${{ secrets.GH_TOKEN }}
+          upstream_repository: TobKed/github-forks-sync-action
+          target_repository: Yomehub/git-sync
+          upstream_branch: master
+          target_branch: master
+          force: true
+          tags: true
