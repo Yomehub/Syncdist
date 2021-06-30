@@ -7,7 +7,7 @@ on:
     paths:
       - '.github/workflows/hyird-ipk.yml'
   schedule:
-    - cron: '45 10 1-31/2 * *'
+    - cron: '45 10 3-31/6 * *'
 
 jobs:
   sync:
@@ -17,7 +17,7 @@ jobs:
       - name: Clone
         run: git clone --mirror --no-single-branch --depth=$DEPTH $SRC_REPO repo.git
         env:
-          SRC_REPO: https://github.com/hyird/Action-Openwrt.git
+          SRC_REPO: https://github.com/hyird/action-openwrt.git
           DEPTH: 1
       - name: Config DownStream
         run: git -C repo.git remote add downstream "$PUSH_TARGET"
