@@ -7,7 +7,7 @@ on:
     paths:
       - '.github/workflows/build-N1.yml'
   schedule:
-    - cron: '40 10 1-31/7 * *'
+    - cron: '40 10 9 * *'
 
 jobs:
   sync:
