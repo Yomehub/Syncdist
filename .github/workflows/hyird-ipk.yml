@@ -6,8 +6,8 @@ on:
       - master
     paths:
       - '.github/workflows/hyird-ipk.yml'
-  schedule:
-    - cron: '45 10 3-31/6 * *'
+#  schedule:
+#    - cron: '45 10 6 * *'
 
 jobs:
   sync:
