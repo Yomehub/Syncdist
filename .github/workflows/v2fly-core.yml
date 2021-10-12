@@ -1,4 +1,4 @@
-name: v2fly/fhs
+name: v2fly-core
 
 on: 
   push:
