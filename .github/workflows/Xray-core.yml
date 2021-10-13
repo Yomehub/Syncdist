@@ -7,7 +7,7 @@ on:
     paths:
       - '.github/workflows/Xray-core.yml'
   schedule:
-    - cron: '20 05 2-31/8 * *'
+    - cron: '20 05 3-31/8 * *'
 
 jobs:
   sync:
